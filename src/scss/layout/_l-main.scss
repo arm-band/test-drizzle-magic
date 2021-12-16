@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+@use "../foundation" as f;
+
+.l-main {
+    background-color: f.$bg-color;
+    color: f.$color;
+    margin-top: f.$navbar-height;
+}

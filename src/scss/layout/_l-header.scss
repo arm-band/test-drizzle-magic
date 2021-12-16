@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+@use "../foundation" as f;
+
+.l-header {
+    .navbar-brand {
+        &,
+        &:link,
+        &:visited,
+        &:hover,
+        &:active,
+        &:focus {
+            color: f.$main-color;
+        }
+    }
+}
+
+.navbar {
+    .container-fluid {
+        position: relative;
+    }
+    &-collapse {
+        width: 100%;
+        @media (max-width: 1199px) {
+            min-height: calc(100vh - f.$navbar-height);
+            background-color: rgba(f.$color, 0.8);
+            color: f.$bg-color;
+            padding: 2rem 3rem;
+            position: absolute;
+            top: f.$navbar-height;
+            transition: left 0.4s ease;
+            &:not(.show) {
+                display: block;
+                left: 100vw;
+            }
+            &.show {
+                left: 0;
+            }
+            .navbar-nav {
+                width: 100%;
+            }
+            .nav-item {
+                padding: 1rem;
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: f.$color_d;
+                    @include f.tColors();
+                }
+                .nav-link {
+                    font-size: 1.25rem;
+                    &,
+                    &:link,
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: f.$bg-color;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

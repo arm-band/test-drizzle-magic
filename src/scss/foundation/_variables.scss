@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+@use "sass:color";
+
+$color: #333;
+$color_d: color.scale($color, $lightness: -8%);
+$color_l: color.scale($color, $lightness: 8%);
+$main-color: #ccc;
+$main-color_d: color.scale($main-color, $lightness: -8%);
+$main-color_l: color.scale($main-color, $lightness: 8%);
+$accent-color: color.adjust($main-color, $hue: 150deg);
+$link-color: color.adjust($main-color, $hue: 210deg);
+$link-v-color: color.scale($link-color, $lightness: -8%);
+$link-ha-color: color.scale($link-color, $lightness: 8%);
+$bg-color: #fff;
+$navbar-height: 56px;
