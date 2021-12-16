@@ -1,6 +1,61 @@
 @charset "utf-8";
 
 @use "../foundation" as f;
+@use "sass:map";
+@use "sass:math";
+
+$hamburger: (
+    button-wh: 2.75rem,
+    icon-width: 2rem,
+    icon-height: 2px,
+    margin: 0.5rem,
+    top: 0.75rem
+);
+
+@keyframes hamburger-bar1 {
+    0% {
+        transform: translateY(map.get($hamburger, margin)) rotate(45deg);
+    }
+    50% {
+        transform: translateY(map.get($hamburger, margin)) rotate(0);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+@keyframes active-hamburger-bar1 {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(map.get($hamburger, margin)) rotate(0);
+    }
+    100% {
+        transform: translateY(map.get($hamburger, margin)) rotate(45deg);
+    }
+}
+@keyframes hamburger-bar3 {
+    0% {
+        transform: translateY(calc(-1 * map.get($hamburger, margin))) rotate(-45deg);
+    }
+    50% {
+        transform: translateY(calc(-1 * map.get($hamburger, margin))) rotate(0);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+@keyframes active-hamburger-bar3 {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(calc(-1 * map.get($hamburger, margin))) rotate(0);
+    }
+    100% {
+        transform: translateY(calc(-1 * map.get($hamburger, margin))) rotate(-45deg);
+    }
+}
 
 .l-header {
     .navbar-brand {
@@ -18,6 +73,59 @@
 .navbar {
     .container-fluid {
         position: relative;
+    }
+    & .navbar-toggler {
+        border-radius: 0;
+        border-color: transparent;
+        position: relative;
+        width: map.get($hamburger, button-wh);
+        height: map.get($hamburger, button-wh);
+        &:focus {
+            outline: 1px solid f.$color;
+        }
+        span {
+            width: map.get($hamburger, icon-width);
+            height: map.get($hamburger, icon-height);
+            background-color: f.$color;
+            display: block;
+            position: absolute;
+            left: math.div((map.get($hamburger, button-wh) - map.get($hamburger, icon-width)), 2);
+            &:first-of-type {
+                top: map.get($hamburger, top);
+            }
+            &:nth-of-type(2) {
+                top: calc(map.get($hamburger, top) + map.get($hamburger, margin));
+            }
+            &:last-of-type {
+                top: calc(map.get($hamburger, top) + map.get($hamburger, margin) * 2);
+            }
+        }
+        &.collapsed {
+            span {
+                &:first-of-type {
+                    animation: hamburger-bar1 0.5s forwards;
+                }
+                &:nth-of-type(2) {
+                    opacity: 1;
+                }
+                &:last-of-type {
+                    animation: hamburger-bar3 0.5s forwards;
+                }
+            }
+        }
+        &.active {
+            span {
+                &:first-of-type {
+                    animation: active-hamburger-bar1 0.5s forwards;
+                }
+                &:nth-of-type(2) {
+                    opacity: 0;
+                }
+                &:last-of-type {
+                    animation: active-hamburger-bar3 0.5s forwards;
+                }
+            }
+        }
     }
     &-collapse {
         width: 100%;

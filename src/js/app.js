@@ -8,6 +8,7 @@ $(() => {
 //            e.preventDefault();
 //            e.stopPropagation();
             $navbarToggler.removeClass('collapsed');
+            $navbarToggler.addClass('active');
             $navbarList.addClass('show');
             return false;
         })
@@ -16,6 +17,7 @@ $(() => {
 //            e.preventDefault();
 //            e.stopPropagation();
             $navbarToggler.addClass('collapsed');
+            $navbarToggler.removeClass('active');
             $navbarList.removeClass('show');
             return false;
         });
